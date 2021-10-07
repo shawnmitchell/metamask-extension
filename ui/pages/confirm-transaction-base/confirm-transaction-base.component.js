@@ -139,6 +139,7 @@ export default class ConfirmTransactionBase extends Component {
     isFailedTransaction: PropTypes.bool,
     removeTxFromFailedTxesToDisplay: PropTypes.bool,
     addTxToDisplay: PropTypes.bool,
+    showTransactionErrorDialog: PropTypes.func,
   };
 
   state = {
@@ -821,6 +822,11 @@ export default class ConfirmTransactionBase extends Component {
     }
   }
 
+  onErrorMessageClick(message) {
+    const { showTransactionErrorDialog } = this.props;
+    showTransactionErrorDialog(message);
+  }
+
   getNavigateTxData() {
     const { currentNetworkUnapprovedTxs, txData: { id } = {} } = this.props;
     const enumUnapprovedTxs = Object.keys(currentNetworkUnapprovedTxs);
@@ -1023,6 +1029,7 @@ export default class ConfirmTransactionBase extends Component {
         handleCloseEditGas={() => this.handleCloseEditGas()}
         currentTransaction={txData}
         isFailedTransaction={isFailedTransaction}
+        onErrorMessageClick={(message) => this.onErrorMessageClick(message)}
       />
     );
   }
