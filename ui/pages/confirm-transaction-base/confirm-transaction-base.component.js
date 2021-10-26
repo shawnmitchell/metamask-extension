@@ -139,7 +139,6 @@ export default class ConfirmTransactionBase extends Component {
     isFailedTransaction: PropTypes.bool,
     removeTxFromFailedTxesToDisplay: PropTypes.func,
     addTxToFailedTxesToDisplay: PropTypes.func,
-    showTransactionErrorDialog: PropTypes.func,
   };
 
   state = {
@@ -720,7 +719,8 @@ export default class ConfirmTransactionBase extends Component {
       maxFeePerGas,
       maxPriorityFeePerGas,
       baseFeePerGas,
-      addTxToDisplay,
+      addTxToFailedTxesToDisplay,
+      removeTxFromFailedTxesToDisplay,
     } = this.props;
     const { submitting } = this.state;
 
@@ -758,7 +758,7 @@ export default class ConfirmTransactionBase extends Component {
         sendTransaction(txData)
           .then(() => {
             removeTxFromFailedTxesToDisplay();
-            clearConfirmTransaction();            
+            clearConfirmTransaction();
             this.setState(
               {
                 submitting: false,
