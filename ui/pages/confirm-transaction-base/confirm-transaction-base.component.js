@@ -720,7 +720,6 @@ export default class ConfirmTransactionBase extends Component {
       maxPriorityFeePerGas,
       baseFeePerGas,
       addTxToFailedTxesToDisplay,
-      removeTxFromFailedTxesToDisplay,
     } = this.props;
     const { submitting } = this.state;
 
@@ -757,7 +756,6 @@ export default class ConfirmTransactionBase extends Component {
         addTxToFailedTxesToDisplay(txData.id);
         sendTransaction(txData)
           .then(() => {
-            removeTxFromFailedTxesToDisplay();
             clearConfirmTransaction();
             this.setState(
               {
