@@ -8,11 +8,14 @@ import { GasFeeContextProvider } from '../../../contexts/gasFee';
 import ErrorMessage from '../../ui/error-message';
 import { TRANSACTION_TYPES } from '../../../../shared/constants/transaction';
 import Dialog from '../../ui/dialog';
+import AdvancedGasPopover from '../advanced-gas-popover';
 import {
   ConfirmPageContainerHeader,
   ConfirmPageContainerContent,
   ConfirmPageContainerNavigation,
 } from '.';
+
+const EIP_1559_V2 = process.env.EIP_1559_V2;
 
 export default class ConfirmPageContainer extends Component {
   static contextTypes = {
@@ -225,13 +228,16 @@ export default class ConfirmPageContainer extends Component {
               )}
             </PageContainerFooter>
           )}
-          {editingGas && (
-            <EditGasPopover
-              mode={EDIT_GAS_MODES.MODIFY_IN_PLACE}
-              onClose={handleCloseEditGas}
-              transaction={currentTransaction}
-            />
-          )}
+          {editingGas &&
+            (EIP_1559_V2 ? (
+              <AdvancedGasPopover onClose={handleCloseEditGas} />
+            ) : (
+              <EditGasPopover
+                mode={EDIT_GAS_MODES.MODIFY_IN_PLACE}
+                onClose={handleCloseEditGas}
+                transaction={currentTransaction}
+              />
+            ))}
         </div>
       </GasFeeContextProvider>
     );
