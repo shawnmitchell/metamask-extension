@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Tabs, Tab } from '../../../ui/tabs';
+import DetailedErrorMessage from '../../../ui/detailed-error-message';
 import ErrorMessage from '../../../ui/error-message';
 import { PageContainerFooter } from '../../../ui/page-container';
 import TransactionErrorDetailsModal from '../../modals/transaction-error-details-modal/transaction-error-details';
@@ -124,14 +125,20 @@ export default class ConfirmPageContainerContent extends Component {
         {this.renderContent()}
         {(errorKey || errorMessage) && (
           <div className="confirm-page-container-content__error-container">
-            <ErrorMessage
-              errorMessage={this.context.t('somethingWentWrong')}
-              errorKey={errorKey}
-              linkText={this.context.t('moreDetails')}
-              onErrorMessageClick={() =>
-                this.setState({ showTransactionErrorDetails: true })
-              }
-            />
+            {errorKey ? (
+              <ErrorMessage
+                errorMessage={this.context.t('somethingWentWrong')}
+                errorKey={errorKey}
+              />
+            ) : (
+              <DetailedErrorMessage
+                errorMessage={this.context.t('somethingWentWrong')}
+                linkText={this.context.t('moreDetails')}
+                onErrorMessageClick={() =>
+                  this.setState({ showTransactionErrorDetails: true })
+                }
+              />
+            )}
           </div>
         )}
         {this.state.showTransactionErrorDetails && (
