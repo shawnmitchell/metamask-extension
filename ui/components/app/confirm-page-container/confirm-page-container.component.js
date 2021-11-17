@@ -15,7 +15,7 @@ import {
   ConfirmPageContainerNavigation,
 } from '.';
 
-const EIP_1559_V2 = process.env.EIP_1559_V2;
+const { EIP_1559_V2 } = process.env;
 
 export default class ConfirmPageContainer extends Component {
   static contextTypes = {
