@@ -1225,9 +1225,6 @@ export default class MetamaskController extends EventEmitter {
       initializeThreeBox: nodeify(this.initializeThreeBox, this),
 
       // permissions
-      clearPermissions: permissionController.clearState.bind(
-        permissionController,
-      ),
       getApprovedAccounts: nodeify(this.getPermittedAccounts, this),
       removePermissionsFor: permissionController.revokePermissions.bind(
         permissionController,

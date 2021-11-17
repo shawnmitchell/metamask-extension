@@ -2402,19 +2402,6 @@ export function removePermissionsFor(subjects) {
   };
 }
 
-/**
- * Clears all permissions for all subjects.
- */
-export function clearPermissions() {
-  return (dispatch) => {
-    background.clearPermissions((err) => {
-      if (err) {
-        dispatch(displayWarning(err.message));
-      }
-    });
-  };
-}
-
 // Pending Approvals
 
 /**
