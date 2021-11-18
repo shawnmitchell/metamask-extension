@@ -15,7 +15,8 @@ import {
   ConfirmPageContainerNavigation,
 } from '.';
 
-const { EIP_1559_V2 } = process.env;
+// eslint-disable-next-line prefer-destructuring
+const EIP_1559_V2 = process.env.EIP_1559_V2;
 
 export default class ConfirmPageContainer extends Component {
   static contextTypes = {
