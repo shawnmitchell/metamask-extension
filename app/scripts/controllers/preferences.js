@@ -33,7 +33,7 @@ export default class PreferencesController {
       useNonceField: false,
       usePhishDetect: true,
       dismissSeedBackUpReminder: false,
-
+      useAuthenticatedAccounts: false,
       // set to true means the dynamic list from the API is being used
       // set to false will be using the static list from contract-metadata
       useTokenDetection: false,
@@ -126,9 +126,19 @@ export default class PreferencesController {
    * @param {boolean} val - Whether or not the user prefers to use the static token list or dynamic token list from the API
    *
    */
-  setUseTokenDetection(val) {
+   setUseTokenDetection(val) {
     this.store.updateState({ useTokenDetection: val });
   }
+
+/**
+   * Setter for the `useAuthenticatedAccounts` property
+   *
+   * @param {boolean} val - Whether or not the user prefers to use the static token list or dynamic token list from the API
+   *
+   */
+ setUseAuthenticatedAccounts(val) {
+  this.store.updateState({ useAuthenticatedAccounts: val });
+}
 
   /**
    * Setter for the `advancedGasFee` property

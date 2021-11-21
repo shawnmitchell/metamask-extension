@@ -2151,6 +2151,19 @@ export function setUseTokenDetection(val) {
   };
 }
 
+export function setUseAuthenticatedAccounts(val) {
+  return (dispatch) => {
+    dispatch(showLoadingIndication());
+    log.debug(`background.setUseAuthenticatedAccounts`);
+    background.setUseAuthenticatedAccounts(val, (err) => {
+      dispatch(hideLoadingIndication());
+      if (err) {
+        dispatch(displayWarning(err.message));
+      }
+    });
+  };
+}
+
 export function setAdvancedGasFee(val) {
   return (dispatch) => {
     dispatch(showLoadingIndication());

@@ -309,6 +309,7 @@ export default class MetamaskController extends EventEmitter {
     });
     this.tokenListController = new TokenListController({
       chainId: hexToDecimal(this.networkController.getCurrentChainId()),
+      useAuthenticatedAccounts: !this.preferencesController.store.getState().useAuthenticatedAccounts,
       useStaticTokenList: !this.preferencesController.store.getState()
         .useTokenDetection,
       onNetworkStateChange: (cb) =>
@@ -328,6 +329,7 @@ export default class MetamaskController extends EventEmitter {
             ...preferencesState,
             useStaticTokenList: !this.preferencesController.store.getState()
               .useTokenDetection,
+            useAuthenticatedAccounts: !this.preferencesController.store.getState().useAuthenticatedAccounts,
           };
           return cb(modifiedPreferencesState);
         }),
@@ -901,6 +903,7 @@ export default class MetamaskController extends EventEmitter {
         this.preferencesController.setUseTokenDetection,
         this.preferencesController,
       ),
+      setUseAuthenticatedAccounts: nodeify(this.preferencesController.setUseAuthenticatedAccounts, this.preferencesController),
       setIpfsGateway: this.setIpfsGateway.bind(this),
       setParticipateInMetaMetrics: this.setParticipateInMetaMetrics.bind(this),
       setCurrentLocale: this.setCurrentLocale.bind(this),
@@ -1486,6 +1489,7 @@ export default class MetamaskController extends EventEmitter {
       identities,
       selectedAddress,
       useTokenDetection,
+      useAuthenticatedAccounts,
     } = this.preferencesController.store.getState();
 
     const { tokenList } = this.tokenListController.state;

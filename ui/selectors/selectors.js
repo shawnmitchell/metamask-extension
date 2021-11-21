@@ -657,6 +657,14 @@ export function getUseTokenDetection(state) {
 }
 
 /**
+ * To get the useAuthenticatedAccounts flag which determines whether a static or dynamic token list is used
+ * @param {*} state
+ * @returns Boolean
+ */
+ export function getUseAuthenticatedAccounts(state) {
+  return Boolean(state.metamask.useAuthenticatedAccounts);
+}
+/**
  * To retrieve the tokenList produced by TokenListcontroller
  * @param {*} state
  * @returns {Object}

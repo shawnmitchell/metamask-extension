@@ -3050,6 +3050,12 @@
   "useTokenDetectionDescription": {
     "message": "We use third-party APIs to detect and display new tokens sent to your wallet. Turn off if you don’t want MetaMask to pull data from those services."
   },
+  "useAuthenticatedAccounts": {
+    "message": "Use Authenticated Accounts"
+  },
+  "useAuthenticatedAccountsDescription": {
+    "message": "We use third-party APIs to detect and display real world ID authentication and provide mechanisms for you to share this information with certain dapps through your MetaMask Wallet."
+  },
   "usedByClients": {
     "message": "Used by a variety of different clients"
   },
